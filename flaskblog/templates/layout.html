@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Required for Boostrap -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <!-- End Required for Bootstrap -->
+
+	{% if title %}
+		<title>Flask Blog - {{ title }}</title>
+	{% else %}
+		<title>Flask Blog</title>
+	{% endif %}
+
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+</head>
+<body>
+
+	<header id="site-header" class="brand-background">
+		<div class="boite">
+			<h1>Flask Blog</h1>
+		</div>
+	</header>
+
+	<nav id="navigation-bar">
+		<div class="boite">
+			<ul class="fl-left">
+				<li><a href="{{ url_for('home') }}">Home</a></li>
+				<li><a href="{{ url_for('about') }}">About</a></li>
+				<li><a href="{{ url_for('contact') }}">Conact</a></li>
+			</ul>
+			<ul class="fl-right">
+				{% if current_user.is_authenticated %}
+					<li><a href="{{ url_for('new_post') }}">Create Post</a></li>
+					<li><a href="{{ url_for('account') }}">Account</a></li>
+					<li><a href="{{ url_for('logout') }}">Logout</a></li>
+				{% else %}
+					<li><a href="{{ url_for('login') }}">Login</a></li>
+					<li><a href="{{ url_for('reg') }}">Register</a></li>
+				{% endif %}
+			</ul>
+		</div>
+	</nav>
+
+	<main>
+		<div class="boite">
+			<div class="side-pane">
+				<h3>Our Sidebar</h3>
+	            <p>You can put any information here you'd like.
+	              <ul>
+	                <li>Latest Posts</li>
+	                <li>Announcements</li>
+	                <li>Calendars</li>
+	                <li>etc</li>
+	              </ul>
+	            </p>
+			</div>
+			<div class="content-pane">
+				
+				<!-- Flashed Messages -->
+				{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							<div class="alert alert-{{ category }}">
+								{{ message }}
+							</div>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<!-- End Flashed Messages -->
+
+				{% block content %}{% endblock %}
+			</div>
+		</div>
+	</main>
+
+	<footer></footer>
+
+	<!-- Boostrap Javascript -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+	
+
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+body {
+	margin: 0px;
+	font-size: 19px;
+	line-height: 1.6em
+}
+
+main {
+	display: inline;
+	margin-top: 8px
+}
+
+.brand-background {
+	background-color: #99c9e4;
+}
+
+.side-pane {
+	width: 25%;
+	float: right
+}
+
+.content-pane {
+	margin-right: 25%;
+	padding: 15px
+}
+
+.boite {
+	width: 80%;
+	margin: auto;
+	overflow: hidden
+}
+
+.post {
+	margin: 12px;
+	margin-top: 24px;
+	margin-left: 0px;
+	padding: 15px;
+	border: 3px solid black;
+	border-radius: 15px;	
+}
+
+.post-data {
+	border-bottom: 1px solid #333
+}
+
+.post-data-line {
+	padding-right: 12px
+}
+
+.post-body, .post {
+	color: #000000;
+}
+
+.post-body h3 {
+	font-weight: 900;
+	color: #f08800;
+}
+
+.fl-right {
+	float: right
+}
+
+.fl-left {
+	float: left
+}
+
+a.article-title:visited {
+	color: #275379;
+}
+
+a.article-title:hover {
+	color: #fca503;
+}
+
+.article-content {
+	white-space: pre-line;
+}
+
+.content-section {
+	background: #ffffff;
+	padding: 10px 20px;
+	border: 1px solid #dddddd;
+	border-radius: 3px;
+	margin-top: 8px;
+	margin-bottom: 20px;
+	margin-left: 0px;
+	margin-right: 8px
+}
+
+.sp-form {
+	padding-bottom: 13px
+}
+
+.form-control-file-style {
+	display: block;
+	margin-bottom: 10px
+}
+
+.enabled {
+	font: small-caps bold 24px/1 sans-serif
+}
+
+.article-img {
+	height: 65px;
+	width: 65px;
+	margin-right: 16px
+}
+
+#site-header {
+	color: #f08800
+}
+
+#navigation-bar {
+	background-color: #333;
+	color: #f08800;
+	margin-bottom: 8px
+}
+
+#navigation-bar ul {
+	padding: 0px;
+	margin-top: 16px;
+	list-style: none
+}
+
+#navigation-bar li {
+	display: inline;
+	padding-right: 8px
+}
+
+#navigation-bar a {
+	text-decoration: none;
+	color: #fff
+}
+
+#site-header h1 {
+	margin: 16px 0px
+}

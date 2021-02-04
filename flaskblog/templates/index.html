@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block content %}
+	<section>
+		<h2>Programming Blogs</h2>
+		<small>
+		{% if show %}
+			<a class="enabled" href="{{ url_for('show_my_posts_only') }}">My Posts</a> |
+			<a href="{{ url_for('show_all_posts') }}">All Posts</a>
+		{% else %}
+			<a href="{{ url_for('show_my_posts_only') }}">My Posts</a> |
+			<a class="enabled" href="{{ url_for('show_all_posts') }}">All Posts</a>
+		{% endif %}
+		</small>
+		{% for post in posts.items %}
+			<div class='post brand-background'>
+				<img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
+				<div class='post-data'>
+					Author: <a href="{{ url_for('user_posts', username=post.author.username) }}" class="post-data-line">{{ post.author.username }}</a>
+					Date Posted: <small class="text-quiet post-data-line">{{ post.get_formatted_date(format) }}</small>
+				</div>
+				<div class="post-body">
+					{# url_for takes the name of the roiute function and then you can set the parameters here, see below #}
+					<h2><a class="article-title" href="{{ url_for('post', post_id=post.id) }}">{{ post.title }}</a></h2>
+					<p class="article-content">{{ post.content }}</p>
+				</div>
+			</div>
+		{% endfor %}
+		<div style="text-align: center;">
+			{% for page_num in posts.iter_pages(left_edge=1, left_current=1, right_current=2, right_edge=1) %}
+				{% if page_num %}
+					{% if posts.page == page_num %}
+						<a class="btn btn-info mb-4" href="{{ url_for('home', page=page_num, show=show) }}">{{ page_num }}</a>
+					{% else %}
+						<a class="btn btn-outline-info mb-4" href="{{ url_for('home', page=page_num, show=show) }}">{{ page_num }}</a>
+					{% endif %}
+				{% else %}
+					.  .  .
+				{% endif %}
+			{% endfor %}
+		</div>
+	</section>
+{% endblock content %}

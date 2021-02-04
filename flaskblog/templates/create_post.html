@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>Create Post</h1>
+<div class="content-section">
+	<!-- emtpy action means the data will be posted to the same route -->
+	<form method="POST" action=""> 
+		{{ form.hidden_tag() }}
+		<fieldset class="form-group">
+			<legend class="mb-4">{{ legend }}</legend>
+
+			<!-- TITLE -->
+			<div class="form-group sp-form">
+
+				{{ form.title.label(class="form-control-label") }}
+
+				{% if form.title.errors %}
+					{{ form.title(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.title.errors %}
+						<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.title(class="form-control form-control-lg") }}
+				{% endif %}
+
+			</div>
+
+			<!-- CONTENT -->
+			<div class="form-group sp-form">
+				{{ form.content.label(class="form-control-label") }}
+
+				{% if form.content.errors %}
+					{{ form.content(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.content.errors %}
+						<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.content(class="form-control form-control-lg") }}
+				{% endif %}
+			</div>
+		</fieldset>
+		<div class ="form-group sp-form">
+			{{ form.submit(class="btn btn-outline-info" )}}
+		</div>
+	</form>
+</div>
+{% endblock content %}
