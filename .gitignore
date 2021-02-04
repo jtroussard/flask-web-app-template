@@ -1,4 +1,5 @@
 /venv
+/flaskblog/__pycache__
 /__pycache__
 /docs/dev-note.txt
 /docs/temp_code.html	
