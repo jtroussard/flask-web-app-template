@@ -1,5 +1,32 @@
+# flaskblog
 /venv
 /flaskblog/__pycache__
 /__pycache__
+/migrations/__pycache__
 /docs/dev-note.txt
-/docs/temp_code.html	
+/docs/temp_code.html
+
+# Flask template
+.DS_Store
+.env
+.flaskenv
+*.py[cod]
+env/
+env*
+dist/
+build/
+*.egg
+*.egg-info/
+_mailinglist
+.tox/
+.cache/
+.pytest_cache/
+.idea/
+docs/_build/
+.vscode
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+*,cover
