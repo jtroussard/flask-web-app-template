@@ -3,7 +3,7 @@ from PIL import Image
 from flaskblog import app, db, bcrypt
 from flask import render_template, send_from_directory, url_for, flash, redirect, request, abort
 from flaskblog.models import User, Post
-from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
+from flaskblog.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm
 from flask_login import login_user, current_user, logout_user, login_required
 
 DATE_FORMAT = "%A, %B %d, %Y"
@@ -24,6 +24,14 @@ def home(show=None):
 @app.route("/about")
 def about():
     return render_template('about.html', title="About")
+
+@app.route("/workorders")
+def workorders():
+    return render_template('workorders.html', title="Work Orders")
+
+@app.route("/workorder/<int:workordernumber>")
+def workorder(workordernumber=000000):
+    return render_template('workorder.html', workordernumber=workordernumber)
 
 @app.route("/test")
 def test():
@@ -179,8 +187,25 @@ def show_all_posts():
 @app.route("/")
 @app.route("/user/<string:username>")
 def user_posts(username):
-
 	page = request.args.get("page", 1, type=int)
 	user = User.query.filter_by(username=username).first_or_404()
 	posts = Post.query.filter_by(author=user).order_by(Post.date_posted.desc()).paginate(page=page, per_page=5)
 	return render_template("user_post.html", posts=posts, user=user, format=DATE_FORMAT)
+
+
+@app.route("/reset_password", methods=["GET", "POST"])
+def reset_request():
+
+	if (current_user.is_authenticated):
+		return redirect(url_for("home"))
+	form = RequestResetForm()
+	return renbder_template("reset_request.html", title="Reset Password", form=form)
+
+	if form.validate_on_submit():
+		post = Post(title=form.title.data, content=form.content.data, author=current_user)
+
+		db.session.add(post)
+		db.session.commit()
+		flash(f"Your post has been created.", "success")
+		return redirect(url_for("home"))
+	return render_template("create_post.html", title="New Post", form=form, legend="New Post")	

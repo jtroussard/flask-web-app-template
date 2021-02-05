@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+	<section>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col"></th>
+					<th scope="col">#</th>
+					<th scope="col">Customer</th>
+					<th scope="col">Vehicle</th>
+					<th scope="col">Date Entered</th>
+					<th scope="col">Status</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row"><input type="checkbox" class="form-check-input" id="exampleCheck1"></th>
+					<td><a href="{{ url_for('workorder', workordernumber=251405) }}">251501</a></td>
+					<td>Elias Rena</td>
+					<td>2008 Mercedes-Benz CLK350 Cabriolet</td>
+					<td>Feb 2, 2021</td>
+					<td>In Shop</td>
+				</tr>
+			</a>
+			<tr>
+				<th scope="row"><input type="checkbox" class="form-check-input" id="exampleCheck1"></th>
+					<td><a href="{{ url_for('workorder', workordernumber=251405) }}">252900</a></td>
+				<td>Tennyson Gedeon</td>
+				<td>2007 Dodge Ram 1500</td>
+				<td>Feb 1, 2021</td>
+				<td>Hold - Parts</td>
+			</tr>
+			<tr class="table-warning">
+				<th scope="row"><input type="checkbox" class="form-check-input" id="exampleCheck1"></th>
+					<td><a href="{{ url_for('workorder', workordernumber=251405) }}">251512</a></td>
+				<td>Korey Gemini</td>
+				<td>2013 Chevrolet Tahoe</td>
+				<td>Feb 4, 2021</td>
+				<td>Waiter</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+{% endblock content %}

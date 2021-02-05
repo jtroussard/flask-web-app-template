@@ -2,15 +2,17 @@
 {% block content %}
 	<section>
 		<h2>Programming Blogs</h2>
-		<small>
-		{% if show %}
-			<a class="enabled" href="{{ url_for('show_my_posts_only') }}">My Posts</a> |
-			<a href="{{ url_for('show_all_posts') }}">All Posts</a>
-		{% else %}
-			<a href="{{ url_for('show_my_posts_only') }}">My Posts</a> |
-			<a class="enabled" href="{{ url_for('show_all_posts') }}">All Posts</a>
+		{% if current_user.is_authenticated %}
+			<small>
+			{% if show %}
+				<a class="enabled" href="{{ url_for('show_my_posts_only') }}">My Posts</a> |
+				<a href="{{ url_for('show_all_posts') }}">All Posts</a>
+			{% else %}
+				<a href="{{ url_for('show_my_posts_only') }}">My Posts</a> |
+				<a class="enabled" href="{{ url_for('show_all_posts') }}">All Posts</a>
+			{% endif %}
+			</small>
 		{% endif %}
-		</small>
 		{% for post in posts.items %}
 			<div class='post brand-background'>
 				<img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
