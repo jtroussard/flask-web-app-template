@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Reset Password</h1>
+<div class="content-section">
+	<!-- emtpy action means the data will be posted to the same route -->
+	<form method="POST" action=""> 
+		{{ form.hidden_tag() }}
+		<fieldset class="form-group">
+			<legend class="mb-4">Reset Password</legend>
+
+			<!-- PASSWORD -->
+			<div class="form-group sp-form">
+
+				{{ form.password.label(class="form-control-label") }}
+
+				{% if form.password.errors %}
+					{{ form.password(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.password.errors %}
+						<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.password(class="form-control form-control-lg") }}
+				{% endif %}
+
+			</div>
+
+			<!-- CONFIRM PASSWORD -->
+			<div class="form-group sp-form">
+
+				{{ form.confirm_password.label(class="form-control-label") }}
+
+				{% if form.confirm_password.errors %}
+					{{ form.confirm_password(class="form-control form-control-lg is-invalid") }}
+					<div class="invalid-feedback">
+						{% for error in form.confirm_password.errors %}
+						<span>{{ error }}</span>
+						{% endfor %}
+					</div>
+				{% else %}
+					{{ form.confirm_password(class="form-control form-control-lg") }}
+				{% endif %}
+
+			</div>
+		</fieldset>
+
+		<div class ="form-group sp-form">
+			{{ form.submit(class="btn btn-outline-info" )}}
+		</div>
+	</form>
+</div>
+{% endblock content %}
