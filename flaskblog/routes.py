@@ -202,8 +202,7 @@ def send_reset_email(user):
 {url_for("reset_token", token=token, _external=True)}\n\n
 If you did not make this request then simply ignore this email. No chnages will be made to your account.
 '''
-	mail.send(msg)
-	
+	mail.send(msg)	
 
 @app.route("/reset_password", methods=["GET", "POST"])
 def reset_request():
