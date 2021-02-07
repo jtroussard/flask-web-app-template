@@ -5,6 +5,7 @@
 /migrations/__pycache__
 /docs/dev-note.txt
 /docs/temp_code.html
+secrets.cfg
 
 # Flask template
 .DS_Store
