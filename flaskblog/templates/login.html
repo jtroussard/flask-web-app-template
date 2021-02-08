@@ -58,7 +58,7 @@
 		</div>
 
 		<small class="muted ml-2">
-			<a href="{{ url_for('reset_request') }}">Forgot Password?</a>
+			<a href="{{ url_for('users.reset_request') }}">Forgot Password?</a>
 		</small>
 
 	</form>
@@ -66,7 +66,7 @@
 
 <div>
 	<!-- url_for method is being passed the route METHOD name not the name of the route -->
-	<small class="text-muted">Need an account?</small> <a class="ml-2" href="{{ url_for('reg') }}">Sign Up Here</a>
+	<small class="text-muted">Need an account?</small> <a class="ml-2" href="{{ url_for('users.reg') }}">Sign Up Here</a>
 </div> 
 
 {% endblock content %}

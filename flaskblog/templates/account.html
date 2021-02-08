@@ -59,6 +59,6 @@
     <div>
         {% if not current_user.is_authenticated %}
             {# <!-- url_for method is being passed the route METHOD name not the name of the route --> #}
-            <small class="text-muted">Already have an account?</small> <a class="ml-2" href="{{ url_for('login') }}">Sign In</a>
+            <small class="text-muted">Already have an account?</small> <a class="ml-2" href="{{ url_for('users.login') }}">Sign In</a>
         {% endif %}
     {% endblock content %}

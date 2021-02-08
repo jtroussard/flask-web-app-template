@@ -1,40 +1,44 @@
 # Initialize the application and bring together necessary compoenents
-import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_sqlalchemy import orm
 from flask_login import LoginManager
 from flask_mail import Mail
-
 from flask_bcrypt import Bcrypt
 
-app = Flask(__name__)
-app.config.from_pyfile("secrets.cfg")
-app.__static_folder = "./static/"
-
-
-# Application configurations
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
-
+from flaskblog.config import Config
 
 # Database Stuff
-db = SQLAlchemy(app) # classes == database models
-migrate = Migrate(app, db)
+db = SQLAlchemy() # classes == database models
+migrate = Migrate()
 
 # Login/Hashing
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.login_view = "login" # Make sure this is the function name of the desired route
+bcrypt = Bcrypt()
+login_manager = LoginManager()
+login_manager.login_view = "users.login" # Make sure this is the function name of the desired route - AND BLUEPRINT if applicatable.
 login_manager.login_message_category = "info"
 
-# Email server stuff
-app.config['MAIL_SERVER'] = "smtp.mail.yahoo.com"
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-# app.config['MAIL_DEBUG'] = True
-mail = Mail(app)
+mail = Mail()
 
-# Circular import error if this is created before the app variable
-from flaskblog import routes
+def create_app(config_class=Config):
+	app = Flask(__name__)
+	app.config.from_object(Config)
+	app.__static_folder = "./static/"
+
+	db.init_app(app)
+	migrate.init_app(app, db)
+	bcrypt.init_app(app)
+	login_manager.init_app(app)
+	mail.init_app(app)
+
+	from flaskblog.users.routes import users
+	from flaskblog.posts.routes import posts
+	from flaskblog.main.routes import main
+
+	app.register_blueprint(users)
+	app.register_blueprint(posts)
+	app.register_blueprint(main)
+
+	return app
+

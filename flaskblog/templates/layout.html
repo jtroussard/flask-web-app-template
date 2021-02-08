@@ -29,19 +29,19 @@
 	<nav id="navigation-bar">
 		<div class="boite">
 			<ul class="fl-left ml-5">
-				<li><a href="{{ url_for('home') }}">Home</a></li>
-				<li><a href="{{ url_for('about') }}">About</a></li>
-				<li><a href="{{ url_for('workorders') }}">Work Orders</a></li>
-				<li><a href="{{ url_for('contact') }}">Conact</a></li>
+				<li><a href="{{ url_for('main.home') }}">Home</a></li>
+				<li><a href="{{ url_for('main.about') }}">About</a></li>
+				<li><a href="{{ url_for('main.workorders') }}">Work Orders</a></li>
+				<li><a href="{{ url_for('main.contact') }}">Conact</a></li>
 			</ul>
 			<ul class="fl-right">
 				{% if current_user.is_authenticated %}
-					<li><a href="{{ url_for('new_post') }}">Create Post</a></li>
-					<li><a href="{{ url_for('account') }}">Account</a></li>
-					<li><a href="{{ url_for('logout') }}">Logout</a></li>
+					<li><a href="{{ url_for('posts.new_post') }}">Create Post</a></li>
+					<li><a href="{{ url_for('users.account') }}">Account</a></li>
+					<li><a href="{{ url_for('users.logout') }}">Logout</a></li>
 				{% else %}
-					<li><a href="{{ url_for('login') }}">Login</a></li>
-					<li><a href="{{ url_for('reg') }}">Register</a></li>
+					<li><a href="{{ url_for('users.login') }}">Login</a></li>
+					<li><a href="{{ url_for('users.reg') }}">Register</a></li>
 				{% endif %}
 			</ul>
 		</div>
