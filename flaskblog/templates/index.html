@@ -1,18 +1,7 @@
 {% extends "layout.html" %}
 {% block content %}
 	<section>
-		<h2>Programming Blogs {% if show %} by {{ current_user }} {& endif %}</h2>
-		{% if current_user.is_authenticated %}
-			<small>
-			{% if show %}
-				<a class="enabled" href="{{ url_for('main.show_my_posts_only') }}">My Posts</a> |
-				<a href="{{ url_for('main.home') }}">All Posts</a>
-			{% else %}
-				<a href="{{ url_for('main.show_my_posts_only') }}">My Posts</a> |
-				<a class="enabled" href="{{ url_for('main.home') }}">All Posts</a>
-			{% endif %}
-			</small>
-		{% endif %}
+		<h2>Programming Blogs</h2>
 		{% for post in posts.items %}
 			<div class='post brand-background'>
 				<img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
