@@ -1,15 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
 	<section>
-		<h2>Programming Blogs</h2>
+		<h2>Programming Blogs {% if show %} by {{ current_user }} {& endif %}</h2>
 		{% if current_user.is_authenticated %}
 			<small>
 			{% if show %}
 				<a class="enabled" href="{{ url_for('main.show_my_posts_only') }}">My Posts</a> |
-				<a href="{{ url_for('main.show_all_posts') }}">All Posts</a>
+				<a href="{{ url_for('main.home') }}">All Posts</a>
 			{% else %}
 				<a href="{{ url_for('main.show_my_posts_only') }}">My Posts</a> |
-				<a class="enabled" href="{{ url_for('main.show_all_posts') }}">All Posts</a>
+				<a class="enabled" href="{{ url_for('main.home') }}">All Posts</a>
 			{% endif %}
 			</small>
 		{% endif %}
